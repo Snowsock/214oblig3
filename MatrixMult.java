@@ -10,15 +10,9 @@ public class MatrixMult {
         for (int i = 0; i < A.length; i++) {
             RowMultiplierTask task = new RowMultiplierTask(C, A, B, i);
             Thread thread = new Thread(task);
+            thread.start();
 
-
-
-
-            // TODO: your solution here
-
-
-
-
+            threads.add(thread);
 
             if (threads.size() % 10 == 0) { waitForThreads(threads); }
         }
@@ -28,17 +22,7 @@ public class MatrixMult {
     private static void waitForThreads(List<Thread> threads) {
         for (Thread thread : threads) {
             try {
-
-
-
-
-
-                // TODO: your solution here
-
-
-
-
-                
+                thread.join();
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
